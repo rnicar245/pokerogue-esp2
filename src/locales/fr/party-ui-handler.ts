@@ -2,7 +2,7 @@ import { SimpleTranslationEntries } from "#app/plugins/i18n";
 
 export const partyUiHandler: SimpleTranslationEntries = {
     "choosePokemon": "Choisissez un Pokémon.",
-    "cantReleaseInBattle": "Impossible de relâcher un Pokémon qui combat !",
+    "cantReleaseInBattle": "Impossible de relâcher un Pokémon au combat !",
     "what2doWithPoke": "Que faire avec ce Pokémon ?",
     "cancelShort": "Annuler",
     "selectMove": "Sélectionnez une capacité.",
