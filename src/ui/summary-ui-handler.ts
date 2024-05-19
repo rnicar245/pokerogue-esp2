@@ -682,14 +682,14 @@ export default class SummaryUiHandler extends UiHandler {
         const profileContainer = this.scene.add.container(0, -pageBg.height);
         pageContainer.add(profileContainer);
 
-        const trainerLabel = addTextObject(this.scene, 7, 12, `${i18next.t('summaryUiHandler:originalTrainer') as string}/`, TextStyle.SUMMARY_ALT);
+        const trainerText = i18next.t('summaryUiHandler:originalTrainer') as string
+          + "/ " + getBBCodeFrag(
+            loggedInUser?.username || i18next.t('summaryUiHandler:unknown'),
+            this.scene.gameData.gender === PlayerGender.Female? TextStyle.SUMMARY_PINK: TextStyle.SUMMARY_BLUE
+          );
+        const trainerLabel = addBBCodeTextObject(this.scene, 7, 12, trainerText, TextStyle.SUMMARY_ALT);
         trainerLabel.setOrigin(0, 0);
         profileContainer.add(trainerLabel);
-
-        const trainerText = addTextObject(this.scene, 25, 12, loggedInUser?.username || i18next.t('summaryUiHandler:unknown'),
-          this.scene.gameData.gender === PlayerGender.FEMALE ? TextStyle.SUMMARY_PINK : TextStyle.SUMMARY_BLUE);
-        trainerText.setOrigin(0, 0);
-        profileContainer.add(trainerText);
 
         const trainerIdText = addTextObject(this.scene, 174, 12, this.scene.gameData.trainerId.toString(), TextStyle.SUMMARY_ALT);
         trainerIdText.setOrigin(0, 0);
@@ -700,7 +700,7 @@ export default class SummaryUiHandler extends UiHandler {
         profileContainer.add(typeLabel);
 
         const getTypeIcon = (index: integer, type: Type, tera: boolean = false) => {
-          const xCoord = 39 + 34 * index;
+          const xCoord = typeLabel.width * typeLabel.scale + 9 + 34 * index;
           const typeIcon = !tera
             ? this.scene.add.sprite(xCoord, 42, `types${Utils.verifyLang(i18next.language) ? `_${i18next.language}` : ''}`, Type[type].toLowerCase())
             : this.scene.add.sprite(xCoord, 42, 'type_tera');
