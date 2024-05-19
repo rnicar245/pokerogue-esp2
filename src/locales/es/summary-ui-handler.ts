@@ -4,10 +4,9 @@ export const SummaryUiHandler: SimpleTranslationEntries = {
     "pokemonInfo": "Info. Pokémon", //Currently unused
     "originalTrainer": "EO",
     "type": "Tipo",
-    "natureBeforeText": "Naturaleza: ",
-    "natureAfterText": "",
-    "apparently": "aparentemente",
-    "metAtLv":"encontrado con Nv. ",
+    "memoText": "Naturaleza: {{nature}},\n{{metText}} con Nv. {{level}},\n{{biomeName}}.",
+    "memoMet": "encontrado",
+    "memoApparentlyMet": "aparentemente encontrado",
     "status": "Estado",
     "lvl": "Nv",
     "unknown": "Desconocido",

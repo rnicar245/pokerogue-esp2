@@ -4,10 +4,9 @@ export const SummaryUiHandler: SimpleTranslationEntries = {
     "pokemonInfo": "Info Pokémon", //Currently unused
     "originalTrainer": "DO",
     "type": "Type",
-    "natureBeforeText": "",
-    "natureAfterText": " de nature",
-    "apparently": "apparemment",
-    "metAtLv":"rencontré au N.",
+    "memoText": "{{nature}} de nature,\n{{metText}} au N.{{level}},\n{{biomeName}}.",
+    "memoMet": "rencontré",
+    "memoApparentlyMet": "apparemment rencontré",
     "status": "Statut",
     "lvl": "N.",
     "unknown": 'Inconnu',

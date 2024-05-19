@@ -801,8 +801,18 @@ export default class SummaryUiHandler extends UiHandler {
         this.passiveContainer?.descriptionText.setVisible(false);
 
         let readableNature = Utils.toReadableString(Nature[this.pokemon.getNature()]);
+        let natureAfter = i18next.exists(`nature:${readableNature}After`)? i18next.t(`nature:${readableNature}After`): "";
         let biomeName = getBiomeName(this.pokemon.metBiome);
-        let memoString = `${getBBCodeFrag(`${i18next.t('summaryUiHandler:natureBeforeText')  as string}`, TextStyle.WINDOW_ALT)}${getBBCodeFrag(i18next.exists(`nature:${readableNature}`) ? i18next.t(`nature:${readableNature}`) : readableNature, TextStyle.SUMMARY_RED)}${getBBCodeFrag(`${i18next.t('summaryUiHandler:natureAfterText') as string},`, TextStyle.WINDOW_ALT)}\n${getBBCodeFrag(`${this.pokemon.metBiome === -1 ? `${i18next.t('summaryUiHandler:apparently') as string} ` : ''}${i18next.t('summaryUiHandler:metAtLv') as string}`, TextStyle.WINDOW_ALT)}${getBBCodeFrag(this.pokemon.metLevel.toString(), TextStyle.SUMMARY_RED)}${getBBCodeFrag(',', TextStyle.WINDOW_ALT)}\n${getBBCodeFrag(i18next.exists(`biome:${biomeName}`) ? i18next.t(`biome:${biomeName}`) : biomeName, TextStyle.SUMMARY_RED)}${getBBCodeFrag('.', TextStyle.WINDOW_ALT)}`;
+        let closeFrag = getBBCodeFrag("", TextStyle.WINDOW_ALT);
+        let memoString = i18next.t("summaryUiHandler:memoText", {
+          nature: getBBCodeFrag(i18next.t(`nature:${readableNature}`), TextStyle.SUMMARY_RED) + closeFrag + natureAfter,
+          metText: i18next.t(`summaryUiHandler:memo${this.pokemon.metBiome === -1? "Apparently": ""}Met`),
+          level: getBBCodeFrag(this.pokemon.metLevel.toString(), TextStyle.SUMMARY_RED) + closeFrag,
+          biomeName: getBBCodeFrag(
+            i18next.exists(`biome:${biomeName}`)? i18next.t(`biome:${biomeName}`): biomeName,
+            TextStyle.SUMMARY_RED
+          ) + closeFrag,
+        });
         const memoText = addBBCodeTextObject(this.scene, 7, 113, memoString, TextStyle.WINDOW_ALT);
         memoText.setOrigin(0, 0);
         profileContainer.add(memoText);
